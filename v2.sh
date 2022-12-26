@@ -1,4 +1,40 @@
 #!/bin/bash
+### COLORES Y BARRA
+msg() {
+  BRAN='\033[1;37m' && VERMELHO='\e[31m' && VERDE='\e[32m' && AMARELO='\e[33m'
+  AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' && NEGRITO='\e[1m' && SEMCOR='\e[0m'
+  case $1 in
+  -ne) cor="${VERMELHO}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}" ;;
+  -ama) cor="${AMARELO}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}" ;;
+  -verm) cor="${AMARELO}${NEGRITO}[!] ${VERMELHO}" && echo -e "${cor}${2}${SEMCOR}" ;;
+  -azu) cor="${MAG}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}" ;;
+  -verd) cor="${VERDE}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}" ;;
+  -bra) cor="${VERMELHO}" && echo -ne "${cor}${2}${SEMCOR}" ;;
+  "-bar2" | "-bar") cor="${VERMELHO}————————————————————————————————————————————————————" && echo -e "${SEMCOR}${cor}${SEMCOR}" ;;
+  esac
+}
+fun_bar() {
+  comando="$1"
+  _=$(
+    $comando >/dev/null 2>&1
+  ) &
+  >/dev/null
+  pid=$!
+  while [[ -d /proc/$pid ]]; do
+    echo -ne " \033[1;33m["
+    for ((i = 0; i < 20; i++)); do
+      echo -ne "\033[1;31m##"
+      sleep 0.5
+    done
+    echo -ne "\033[1;33m]"
+    sleep 1s
+    echo
+    tput cuu1
+    tput dl1
+  done
+  echo -e " \033[1;33m[\033[1;31m########################################\033[1;33m] - \033[1;32m100%\033[0m"
+  sleep 1s
+}
 
 BEIJING_UPDATE_TIME=3
 BEGIN_PATH=$(pwd)

@@ -57,33 +57,33 @@ dependencias(){
 		for (( a = 0; a < $puntos; a++ )); do
 			pts+="."
 		done
-		msg -nazu "      instalando $install $(msg -ama "$pts")"
+		echo -e "      instalando $install $(msg -ama "$pts")"
 		if apt install $install -y &>/dev/null ; then
-			msg -verd "INSTALL"
+			echo -e "INSTALL"
 		else
-			msg -verm2 "FAIL"
+			echo -e "FAIL"
 			sleep 2
 			del 1
 			if [[ $install = "python" ]]; then
 				pts=$(echo ${pts:1})
-				msg -nazu "      instalando python2 $(msg -ama "$pts")"
+				echo -e "      instalando python2 $(msg -ama "$pts")"
 				if apt install python2 -y &>/dev/null ; then
 					[[ ! -e /usr/bin/python ]] && ln -s /usr/bin/python2 /usr/bin/python
-					msg -verd "INSTALL"
+					echo -e "INSTALL"
 				else
-					msg -verm2 "FAIL"
+					echo -e "FAIL"
 				fi
 				continue
 			fi
-			print_center -ama "aplicando fix a $install"
+			echo -e "aplicando fix a $install"
 			dpkg --configure -a &>/dev/null
 			sleep 2
 			del 1
-			msg -nazu "      instalando $install $(msg -ama "$pts")"
+			echo -e "      instalando $install $(msg -ama "$pts")"
 			if apt install $install -y &>/dev/null ; then
-				msg -verd "INSTALL"
+				echo -e "INSTALL"
 			else
-				msg -verm2 "FAIL"
+				echo -e "FAIL"
 			fi
 		fi
 	done
@@ -107,7 +107,7 @@ closeSELinux(){
 }
 
 timeSync(){
-	print_center -blu "Sincronización de tiempo ..."
+	echo -e "Sincronización de tiempo ..."
 	if [[ `command -v ntpdate` ]];then
 		ntpdate pool.ntp.org
 	elif [[ `command -v chronyc` ]];then
@@ -123,7 +123,7 @@ timeSync(){
 
 updateProject(){
 	if [[ ! $(type pip 2>/dev/null) ]]; then
-		print_center -ama 'Falta en la dependencia pip\nNo se puede continuar con la instalacion'
+		echo -e 'Falta en la dependencia pip\nNo se puede continuar con la instalacion'
 		enter
 		return 1
 	fi
@@ -169,19 +169,19 @@ installFinish(){
     if [[ $(v2ray restart|grep success) ]]; then
     	v2ray info
     	msg -bar
-        print_center -verd "INSTALACION FINALIZADA"
+        echo -e "INSTALACION FINALIZADA"
     else
     	v2ray info
     	msg -bar
-        print_center -verd "INSTALACION FINALIZADA"
-        print_center -verm2 'Pero fallo el reinicio del servicio v2ray'
+        echo -e "INSTALACION FINALIZADA"
+        echo -e 'Pero fallo el reinicio del servicio v2ray'
     fi
-    print_center -ama "Por favor verifique el log"
+    echo -e "Por favor verifique el log"
     enter
 }
 
 main(){
-	title 'INSTALADO DEPENDENCIAS V2RAY'
+	echo -e 'INSTALADO DEPENDENCIAS V2RAY'
 
     dependencias
     closeSELinux

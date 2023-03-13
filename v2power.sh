@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Jrohy
-# github: https://github.com/Jrohy/multi-v2ray
+# github base: https://github.com/Jrohy/multi-v2ray
 # Mod: PowerMX - VpsPack
 
 #定时任务北京执行时间(0~23)
@@ -228,6 +228,7 @@ EOF
     fi
     
     #安装V2ray主程序
+    #GO.SH Modificado por PowerMX 
     [[ ${INSTALL_WAY} == 0 ]] && bash <(curl -L -s https://raw.githubusercontent.com/powermx/v2/main/go.sh)
 }
 
@@ -274,7 +275,8 @@ installFinish() {
 
         v2ray info
 
-        echo -e "please input 'v2ray' command to manage v2ray\n"
+        echo -e "Teclea 'v2ray' para administrar el servidor v2ray\n"
+        echo -e "modulo para VpsPack creado por PowerMX - http://t.me/powermx"
     fi
 }
 

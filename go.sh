@@ -309,7 +309,7 @@ startV2ray(){
 
 installV2Ray(){
     # Install $KEY binary to /usr/bin/$KEY_LOWER
-    if [[ $KEY == "V2Ray" && `unzip -l $1|grep v2ctl` ]];then
+    if [[ $KEY == "V2Ray" && `unzip -ol $1|grep v2ctl` ]];then
         UNZIP_PARAM="$2v2ctl"
         CHMOD_PARAM="/usr/bin/$KEY_LOWER/v2ctl"
     fi

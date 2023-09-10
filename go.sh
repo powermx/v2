@@ -22,7 +22,7 @@ LOCAL_INSTALL=''
 ERROR_IF_UPTODATE=''
 
 CUR_VER=""
-NEW_VER="v4.45.2"
+NEW_VER="v5.7.0"
 ZIPFILE="/tmp/v2ray/v2ray.zip"
 V2RAY_RUNNING=0
 
@@ -314,7 +314,7 @@ installV2Ray(){
         CHMOD_PARAM="/usr/bin/$KEY_LOWER/v2ctl"
     fi
     mkdir -p /etc/$KEY_LOWER /var/log/$KEY_LOWER && \
-    unzip -o "$1" "$2${KEY_LOWER}" "$2geoip.dat" "$2geosite.dat" $UNZIP_PARAM -d /usr/bin/$KEY_LOWER && \
+    unzip -of "$1" "$2${KEY_LOWER}" "$2geoip.dat" "$2geosite.dat" $UNZIP_PARAM -d /usr/bin/$KEY_LOWER && \
     chmod +x /usr/bin/$KEY_LOWER/$KEY_LOWER $CHMOD_PARAM || {
         colorEcho ${RED} "Failed to copy $KEY binary and resources."
         return 1

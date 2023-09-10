@@ -158,7 +158,7 @@ archAffix(){
 }
 
 zipRoot() {
-    unzip -olqq "$1" | awk -e '
+    unzip -lqq "$1" | awk -e '
         NR == 1 {
             prefix = $4;
         }
@@ -309,12 +309,12 @@ startV2ray(){
 
 installV2Ray(){
     # Install $KEY binary to /usr/bin/$KEY_LOWER
-    if [[ $KEY == "V2Ray" && `unzip -ol $1|grep v2ctl` ]];then
+    if [[ $KEY == "V2Ray" && `unzip -l $1|grep v2ctl` ]];then
         UNZIP_PARAM="$2v2ctl"
         CHMOD_PARAM="/usr/bin/$KEY_LOWER/v2ctl"
     fi
     mkdir -p /etc/$KEY_LOWER /var/log/$KEY_LOWER && \
-    unzip -of "$1" "$2${KEY_LOWER}" "$2geoip.dat" "$2geosite.dat" $UNZIP_PARAM -d /usr/bin/$KEY_LOWER && \
+    unzip -oj "$1" "$2${KEY_LOWER}" "$2geoip.dat" "$2geosite.dat" $UNZIP_PARAM -d /usr/bin/$KEY_LOWER && \
     chmod +x /usr/bin/$KEY_LOWER/$KEY_LOWER $CHMOD_PARAM || {
         colorEcho ${RED} "Failed to copy $KEY binary and resources."
         return 1

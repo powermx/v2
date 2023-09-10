@@ -22,7 +22,7 @@ LOCAL_INSTALL=''
 ERROR_IF_UPTODATE=''
 
 CUR_VER=""
-NEW_VER="v5.7.0"
+NEW_VER="v4.45.2"
 ZIPFILE="/tmp/v2ray/v2ray.zip"
 V2RAY_RUNNING=0
 
@@ -192,7 +192,7 @@ downloadV2Ray(){
     mkdir -p /tmp/$KEY_LOWER
     local PACK_NAME=$KEY_LOWER
     [[ $KEY == "Xray" ]] && PACK_NAME=$KEY
-    DOWNLOAD_LINK="https://github.com/$REPOS/releases/download/v5.7.0/${PACK_NAME}-linux-${MACHINE}.zip"
+    DOWNLOAD_LINK="https://github.com/$REPOS/releases/download/v4.45.2/${PACK_NAME}-linux-${MACHINE}.zip"
     colorEcho ${BLUE} "Downloading $KEY: ${DOWNLOAD_LINK}"
     curl ${PROXY} -L -H "Cache-Control: no-cache" -o ${ZIPFILE} ${DOWNLOAD_LINK}
     if [ $? != 0 ];then

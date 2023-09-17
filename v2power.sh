@@ -276,7 +276,7 @@ installFinish() {
         v2ray info
 
         echo -e "Teclea 'v2ray' para administrar el servidor v2ray\n"
-        echo -e "modulo para VpsPack creado por PowerMX - http://t.me/powermx"
+
     fi
 }
 
